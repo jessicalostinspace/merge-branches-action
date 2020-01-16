@@ -1,0 +1,30 @@
+{
+  "name": "merge-branches-action",
+  "version": "1.0.0",
+  "description": "Merges a branch into a baseline branch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessicalostinspace/merge-branches-action.git"
+  },
+  "keywords": [
+    "merging",
+    "merge",
+    "merge",
+    "for",
+    "release"
+  ],
+  "author": "Jessica Wilson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jessicalostinspace/merge-branches-action/issues"
+  },
+  "homepage": "https://github.com/jessicalostinspace/merge-branches-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.1",
+    "@actions/github": "^2.0.1"
+  }
+}
