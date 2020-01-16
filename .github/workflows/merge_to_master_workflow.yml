@@ -1,0 +1,30 @@
+name: Get Release Branch and Merge to Master
+
+# on:
+#   push:
+#     branches:
+#       - 'development'
+on:
+  repository_dispatch:
+    types: jenkins-qa
+
+jobs:
+  merge_to_master:
+    name: Merge to Master
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Development
+      uses: actions/checkout@v1 #checks-out your repository under $GITHUB_WORKSPACE, so your workflow can access it.
+    - name: Merge Release Branch Into Master
+      id: mb
+      uses: ./
+      with:
+        branch-to-merge: ${{ github.event.client_payload.branch_name }} 
+        baseline-branch: 'master'
+    # - name: Cut Release Branch
+    #   id: crb
+    #   uses: ./
+    #   with:
+    #     repository-url: 'https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git'
+    #     branch-prefix: 'release-v'
+    #     semantic-version: ${{ steps.bsv.outputs.bumped-semantic-version }}

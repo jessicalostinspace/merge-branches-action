@@ -1,0 +1,20 @@
+name: 'Merge a Branch Into a Baseline Branch'
+author: "Jessica Wilson"
+description: 'Given a branch name you want to merge and the branch name you want to merge into, will merge the former into the latter.'
+inputs:
+  branch-to-merge:
+    description: 'The name of the desired branch to merge'
+    required: true
+  baseline-branch:
+    description: 'The branch you want to merge into'
+    required: true
+    default: 'master'
+# outputs:
+#   release-branch-name:
+#     description: 'The name of the new release branch'
+runs:
+  using: 'node12'
+  main: 'index.js'
+branding:
+  icon: 'git-merge'
+  color: 'orange'
