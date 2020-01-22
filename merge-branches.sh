@@ -8,6 +8,7 @@ echo =================================================
 echo  MERGING RELEASE $branchName INTO $baselineBranch          
 echo =================================================
 
+git fetch
 git checkout $baselineBranch
 git pull origin $baselineBranch
 git merge $branchName

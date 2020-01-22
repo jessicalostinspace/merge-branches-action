@@ -19,7 +19,7 @@ jobs:
       with:
         branch-prefix: 'release-v'
         release-version: ${{ github.event.client_payload.release_version }} 
-        baseline-branch: 'master'
+        baseline-branch: 'development'
     # - name: Cut Release Branch
     #   id: crb
     #   uses: ./
