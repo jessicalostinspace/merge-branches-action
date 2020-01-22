@@ -1,17 +1,56 @@
 const core = require('@actions/core');
-const github = require('@actions/github');
+const exec = require('@actions/exec');
+
+const src = __dirname;
 
 try {
-  // `who-to-greet` input defined in action metadata file
-  const branchToMerge = core.getInput('branch-to-merge');
+  const branchPrefix = core.getInput('branch-prefix');
+  const releaseVersion = core.getInput('release-version');
+  const branchName = branchPrefix + releaseVersion;
   const baselineBranch = core.getInput('baseline-branch');
-  console.log(`branchToMerge ${branchToMerge}`);
+  const regexp = /^[\.A-Za-z0-9_-]*$/;
+
+  console.log(`branchPrefix ${branchPrefix}`);
+  console.log(`releaseVersion ${releaseVersion}`);
   console.log(`baselineBranch ${baselineBranch}`);
 
-//   core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
+  if (regexp.test(branchName)) {
+    mergeBranches(branchName, baselineBranch);
+  } else {
+    const regexError = "Branch prefix and semantic version must contain only numbers, strings, underscores, periods, and dashes.";
+    core.setFailed(regexError);
+  }
+
 } catch (error) {
   core.setFailed(error.message);
 }
+
+async function mergeBranches(branchName, baselineBranch) {
+    try {
+      let output = '';
+      let err = '';
+  
+      const options = {};
+      options.listeners = {
+        stdout: (data) => {
+          output += data.toString();
+        },
+        stderr: (data) => {
+          err += data.toString();
+        }
+      };
+      options.cwd = './';
+  
+      await exec.exec(`${src}/merge-branches.sh`, [branchName, baselineBranch], options);
+  
+      if (output) {
+        console.log('\x1b[32m%s\x1b[0m', `Github Output: ${output}`);
+      } else {
+        core.setFailed(err);
+        process.exit(1);
+      }
+    } catch (err) {
+      core.setFailed(`Could not merge branches because: ${err.message}`);
+      process.exit(0);
+    }
+  }
