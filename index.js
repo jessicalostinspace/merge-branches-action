@@ -15,7 +15,7 @@ try {
   console.log(`baselineBranch ${baselineBranch}`);
 
   if (regexp.test(branchName)) {
-    mergeBranches(branchName, baselineBranch, repositoryUrl);
+    mergeBranches(branchName, baselineBranch);
   } else {
     const regexError = "Branch prefix and semantic version must contain only numbers, strings, underscores, periods, and dashes.";
     core.setFailed(regexError);
