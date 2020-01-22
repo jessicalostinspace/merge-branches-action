@@ -1,9 +1,5 @@
 name: Get Release Branch and Merge to Master
 
-# on:
-#   push:
-#     branches:
-#       - 'development'
 on:
   repository_dispatch:
     types: jenkins-qa
@@ -19,7 +15,8 @@ jobs:
       id: mb
       uses: ./
       with:
-        branch-to-merge: ${{ github.event.client_payload.branch_name }} 
+        branch-prefix: 'release-v'
+        release-version: ${{ github.event.client_payload.release_version }} 
         baseline-branch: 'master'
     # - name: Cut Release Branch
     #   id: crb
