@@ -3,7 +3,9 @@ name: Get Release Branch and Merge to Master
 on:
   repository_dispatch:
     types: jenkins-qa
-
+  push:
+      branches:
+        - 'development'
 jobs:
   merge_to_master:
     name: Merge to Master

@@ -2,16 +2,14 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 try {
-  // `who-to-greet` input defined in action metadata file
-  const branchToMerge = core.getInput('branch-to-merge');
+  const branchPrefix = core.getInput('branch-prefix');
+  const releaseVersion = core.getInput('release-version');
   const baselineBranch = core.getInput('baseline-branch');
-  console.log(`branchToMerge ${branchToMerge}`);
+  console.log(`branchPrefix ${branchPrefix}`);
+  console.log(`releaseVersion ${releaseVersion}`);
   console.log(`baselineBranch ${baselineBranch}`);
 
 //   core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
 } catch (error) {
   core.setFailed(error.message);
 }
