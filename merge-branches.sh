@@ -4,9 +4,9 @@ set -eou pipefail
 branchName=$1
 baselineBranch=$2
 
-echo =================================================
-echo  MERGING RELEASE $branchName INTO $baselineBranch          
-echo =================================================
+# echo =================================================
+# echo  MERGING RELEASE $branchName INTO $baselineBranch          
+# echo =================================================
 
 echo git branch -r | grep $branchName
 git branch -r | grep $branchName
