@@ -1,5 +1,5 @@
 #!/bin/bash
-set -eou pipefail
+# set -eou pipefail
 
 branchName=$1
 baselineBranch=$2
