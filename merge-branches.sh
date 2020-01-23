@@ -11,5 +11,5 @@ echo =================================================
 git fetch
 git checkout $baselineBranch
 git pull origin $baselineBranch
-git merge $branchName
+git merge origin $branchName
 git push origin $baselineBranch
