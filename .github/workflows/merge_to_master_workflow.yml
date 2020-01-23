@@ -20,6 +20,7 @@ jobs:
         branch-prefix: 'release-v'
         release-version: ${{ github.event.client_payload.release_version }} 
         baseline-branch: 'development'
+        repository-url: 'https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git'
     # - name: Cut Release Branch
     #   id: crb
     #   uses: ./
