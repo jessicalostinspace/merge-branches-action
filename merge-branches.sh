@@ -14,7 +14,7 @@ echo $remoteBranch
 
 git fetch
 git checkout $baselineBranch
-git remote set-url origin $repositoryUrl
 git pull origin $baselineBranch
+git remote set-url origin $repositoryUrl
 git merge --no-ff $remoteBranch
 git push origin $baselineBranch
