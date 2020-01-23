@@ -8,7 +8,8 @@ echo =================================================
 echo  MERGING RELEASE $branchName INTO $baselineBranch          
 echo =================================================
 
-remoteBranch=$(echo $(git branch -r | grep $branchName))
+remoteBranch=$(git branch -r | grep $branchName)
+echo $remoteBranch
 
 git fetch
 git checkout $baselineBranch
