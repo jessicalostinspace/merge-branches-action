@@ -4,6 +4,7 @@ const exec = require('@actions/exec');
 const src = __dirname;
 
 try {
+  const repositoryUrl = core.getInput('repository-url');
   const branchPrefix = core.getInput('branch-prefix');
   const releaseVersion = core.getInput('release-version');
   const branchName = branchPrefix + releaseVersion;
@@ -15,7 +16,7 @@ try {
   console.log(`baselineBranch ${baselineBranch}`);
 
   if (regexp.test(branchName)) {
-    mergeBranches(branchName, baselineBranch);
+    mergeBranches(branchName, baselineBranch, repositoryUrl);
   } else {
     const regexError = "Branch prefix and semantic version must contain only numbers, strings, underscores, periods, and dashes.";
     core.setFailed(regexError);
@@ -25,7 +26,7 @@ try {
   core.setFailed(error.message);
 }
 
-async function mergeBranches(branchName, baselineBranch) {
+async function mergeBranches(branchName, baselineBranch, repositoryUrl) {
     try {
       let output = '';
       let err = '';
@@ -41,7 +42,7 @@ async function mergeBranches(branchName, baselineBranch) {
       };
       options.cwd = './';
   
-      await exec.exec(`${src}/merge-branches.sh`, [branchName, baselineBranch], options);
+      await exec.exec(`${src}/merge-branches.sh`, [branchName, baselineBranch, repositoryUrl], options);
   
       if (output) {
         console.log('\x1b[32m%s\x1b[0m', `Github Output: ${output}`);

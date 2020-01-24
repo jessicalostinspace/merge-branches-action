@@ -7,13 +7,20 @@ inputs:
     required: true
     default: ''
   release-version:
+<<<<<<< HEAD
     description: 'An optional release version if your branch to merge contains one'
+=======
+    description: 'An optional version (ie. SemVer) if your branch to merge contains one'
+>>>>>>> 631dc9818e35dba6304139bf3d6e940fdd700894
     required: true
     default: ''
   baseline-branch:
     description: 'The branch you want to merge into. Default is master.'
     required: true
     default: 'master'
+  repository-url:
+    description: 'The url to the repository containing the github secret'
+    required: true
 # outputs:
 #   release-branch-name:
 #     description: 'The name of the new release branch'
