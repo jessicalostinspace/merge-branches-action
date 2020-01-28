@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+set -ex
 
 branchName=$1
 baselineBranch=$2
