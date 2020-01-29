@@ -1,5 +1,5 @@
 #!/bin/bash
-set -x
+set -ex
 
 branchName=$1
 baselineBranch=$2
@@ -9,6 +9,12 @@ echo =================================================
 echo  MERGING RELEASE $branchName INTO $baselineBranch          
 echo =================================================
 
+numberOfMatches=$(git branch -r | grep -c $branchName)
+if [[ numberOfMatches -gt 1 ]]; then
+    trap 'last_command=$current_command; current_command=$numberOfMatches' DEBUG
+    trap 'echo "\"${last_command}\" command filed with exit code 1."' EXIT
+    exit 2
+fi
 remoteBranch=$(git branch -r | grep $branchName)
 echo $remoteBranch
 

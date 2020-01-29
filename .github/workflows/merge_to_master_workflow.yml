@@ -21,10 +21,3 @@ jobs:
         release-version: ${{ github.event.client_payload.release_version }} 
         baseline-branch: 'master'
         repository-url: 'https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git'
-    # - name: Cut Release Branch
-    #   id: crb
-    #   uses: ./
-    #   with:
-    #     repository-url: 'https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git'
-    #     branch-prefix: 'release-v'
-    #     semantic-version: ${{ steps.bsv.outputs.bumped-semantic-version }}
