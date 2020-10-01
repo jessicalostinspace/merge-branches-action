@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/jessicalostinspace/merge-branches-action#readme",
   "dependencies": {
-    "@actions/core": "^1.2.1",
+    "@actions/core": "^1.2.6",
     "@actions/exec": "^1.0.3",
     "@actions/github": "^2.0.1"
   }
